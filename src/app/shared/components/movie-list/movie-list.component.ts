@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { MoviesApiService } from './../../services/movies.api.service';
 
 @Component({
   selector: 'app-movie-list',
@@ -6,7 +7,11 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieListComponent implements OnInit {
-  constructor() {}
+  constructor(private movieService: MoviesApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.movieService.getPopularMovieList(1, 'tr-TR').subscribe((res) => {
+      console.log(res);
+    });
+  }
 }

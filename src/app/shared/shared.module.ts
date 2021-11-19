@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import * as _components from './index';
 import { RouterModule } from '@angular/router';
+import { ServicesModule } from './services/services.module';
 
 const COMPONENTS = [
   _components.MovieListComponent,
@@ -17,7 +18,7 @@ const LAYOUTS = [
 
 @NgModule({
   declarations: [...COMPONENTS, ...LAYOUTS],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ServicesModule],
   exports: [...COMPONENTS, ...LAYOUTS],
 })
 export class SharedModule {}

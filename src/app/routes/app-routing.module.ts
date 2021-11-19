@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomePageComponent } from '../pages/home-page/home-page.component';
-import { LayoutComponent } from '../layout/layout.component';
+import { LayoutComponent } from '../shared';
+import { HomePageComponent, MovieDetailComponent } from '../pages';
 import { SharedModule } from '../shared/shared.module';
-import { MovieDetailComponent } from '../pages/movie-detail/movie-detail.component';
 
 const routes: Routes = [
   {

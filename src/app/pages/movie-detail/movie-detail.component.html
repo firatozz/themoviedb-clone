@@ -1,59 +1,51 @@
 <section class="cover-section"
-  style="background-image: url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/ktDJ21QQscbMNQfPpZBsNORxdDx.jpg);">
+  [style.background-image]="'url(https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/'+movieInfo.backdrop_path+')'">
   <div class="container">
     <div class="grid-medium flex-middle">
       <!-- Movie Image-->
       <div class="width-1-4">
-        <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/ekZobS8isE6mA53RAiGDG93hBxL.jpg" class="width-1-1"
-          alt="">
+        <img [src]="imagePath + movieInfo.poster_path" alt="" style="width: 300px;border-radius: 10px;">
       </div>
       <!-- Movie Info-->
       <div class="width-3-4">
         <!-- Movie Name-->
         <div class="flex">
           <div>
-            <a href="" class="movie-name">Lucifer</a>
+            <a href="" class="movie-name">{{movieInfo.title}}</a>
           </div>
-          <div class="movie-year">(2016)</div>
+          <div class="movie-year">({{movieInfo.release_date | date:'yyyy'}})</div>
         </div>
         <!-- Movie Categories and Duration-->
         <div class="flex">
           <div class="flex movie-categories">
             <div>
-              <a href="#">Crime</a>
-              <span>,</span>
+              <a href="#"></a>
+              <span *ngFor="let item of movieInfo.genres">{{item.name}},</span>
             </div>
-            <div>
-              <a href="#">Sci-Fi&Fantasy</a>
-              <span>,</span>
-            </div>
+            <div></div>
           </div>
-          <div class="movie-duration">45 m</div>
+          <div class="movie-duration">{{movieInfo.runtime}}</div>
         </div>
         <!-- Buttons-->
         <div>
           <ul class="movie-detail-buttons">
-            <li><a href="#"><img
+            <li><a><img
                   src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-159-thumbnails-list-white-c260ea972eebf812289fd3c41d0d2c1dff33ecbcd62be13fba8eeaf9de173789.svg"
                   alt=""><span class="details">Login to create.</span></a></li>
-            <li><a href="#"><img
+            <li><a><img
                   src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-13-heart-white-28d2cc2d6418c5047efcfd2438bfc5d109192671263c270993c05f130cc4584e.svg"
                   alt=""><span class="details">Login to create.</span></a></li>
-            <li><a href="#"><img
+            <li><a><img
                   src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-73-bookmark-white-432e98d550b7e4c80b06272c49475b0db85a60f6fae450420713004b3c9d3ffd.svg"
                   alt=""><span class="details">Login to create.</span></a></li>
-            <li><a href="#"><img
+            <li><a><img
                   src="https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-49-star-white-5c85220678b312aea9599d5f12ad858a9e7df226de51ef8b6b699023ffeda5fa.svg"
                   alt=""><span class="details">Login to create.</span></a></li>
           </ul>
         </div>
-        <p class="movie-quote">All bad things must come to an end.</p>
+        <p class="movie-quote">{{movieInfo.tagline}}</p>
         <div class="overview">Overview</div>
-        <p>Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles,
-          where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from
-          the underworld, the greater the threat that the worst of humanity could escape.</p>
-        <div class="director">Tom Kapios</div>
-        <div class="director-title">Creator</div>
+        <p>{{movieInfo.overview}}</p>
       </div>
     </div>
   </div>

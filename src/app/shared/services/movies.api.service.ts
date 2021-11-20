@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
-import { MovieList } from '../models/MovieList';
 import { MovieListResponse } from './../models/MovieListResponse';
+import { MovieDetail } from '../models/MovieDetail';
 
 @Injectable({
   providedIn: 'root',
@@ -16,12 +16,21 @@ export class MoviesApiService {
 
   getPopularMovieList(
     page?: number,
-    language?: string
+    language = 'en-US'
   ): Observable<MovieListResponse> {
     return this.httpClient.get<MovieListResponse>(this.API_URL + 'popular', {
       params: {
         api_key: String(this.API_KEY),
         page: Number(page),
+        language: String(language),
+      },
+    });
+  }
+
+  getMovieDetail(movieId: string, language = 'en-US'): Observable<MovieDetail> {
+    return this.httpClient.get<MovieDetail>(this.API_URL + movieId, {
+      params: {
+        api_key: String(this.API_KEY),
         language: String(language),
       },
     });

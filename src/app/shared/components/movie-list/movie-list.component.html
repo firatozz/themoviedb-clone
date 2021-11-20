@@ -10,63 +10,13 @@
       </ul>
     </div>
     <div class="movie-cards">
-      <div class="movie-card">
-        <a href="./movie-detail">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
-        </a>
-      </div>
-      <div class="movie-card">
-        <a href="#">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
-        </a>
-      </div>
-      <div class="movie-card">
-        <a href="#">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
-        </a>
-      </div>
-      <div class="movie-card">
-        <a href="#">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
-        </a>
-      </div>
-      <div class="movie-card">
-        <a href="#">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
-        </a>
-      </div>
-      <div class="movie-card">
-        <a href="#">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
-        </a>
-      </div>
-      <div class="movie-card">
-        <a href="#">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
-        </a>
-      </div>
-      <div class="movie-card">
-        <a href="#">
-          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/ekZobS8isE6mA53RAiGDG93hBxL.jpg" alt="">
-          <h2>Movie Name</h2>
-          <p>Movie Date</p>
+      <div *ngFor="let movie of movies.results; let i = index" class="movie-card">
+        <a [routerLink]="['/movie-detail', movie.id]">
+          <img [src]="imagePath + movie.poster_path" alt="">
+          <h2>{{movie.title}}</h2>
+          <p>{{movie.release_date | date:'MMM dd, y'}}</p>
         </a>
       </div>
     </div>
   </div>
 </div>
-s

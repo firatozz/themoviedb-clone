@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import * as _components from './index';
 import { RouterModule } from '@angular/router';
 import { ServicesModule } from './services/services.module';
+
+import * as _components from './index';
 
 const COMPONENTS = [
   _components.MovieListComponent,

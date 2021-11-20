@@ -14,7 +14,7 @@ const routes: Routes = [
         component: HomePageComponent,
       },
       {
-        path: 'movie-detail',
+        path: 'movie-detail/:id',
         component: MovieDetailComponent,
         pathMatch: 'full',
       },

@@ -18,21 +18,43 @@ export class MoviesApiService {
     page?: number,
     language = 'en-US'
   ): Observable<MovieListResponse> {
-    return this.httpClient.get<MovieListResponse>(this.API_URL + 'popular', {
-      params: {
-        api_key: String(this.API_KEY),
-        page: Number(page),
-        language: String(language),
-      },
-    });
+    return this.httpClient.get<MovieListResponse>(
+      this.API_URL + '/movie/popular',
+      {
+        params: {
+          api_key: String(this.API_KEY),
+          page: Number(page),
+          language: String(language),
+        },
+      }
+    );
   }
 
   getMovieDetail(movieId: string, language = 'en-US'): Observable<MovieDetail> {
-    return this.httpClient.get<MovieDetail>(this.API_URL + movieId, {
-      params: {
-        api_key: String(this.API_KEY),
-        language: String(language),
-      },
-    });
+    return this.httpClient.get<MovieDetail>(
+      this.API_URL + '/movie/' + movieId,
+      {
+        params: {
+          api_key: String(this.API_KEY),
+          language: String(language),
+        },
+      }
+    );
+  }
+
+  getSearchMovie(
+    query: string,
+    language = 'en-US'
+  ): Observable<MovieListResponse> {
+    return this.httpClient.get<MovieListResponse>(
+      this.API_URL + '/search/movie',
+      {
+        params: {
+          api_key: String(this.API_KEY),
+          language: String(language),
+          query: String(query),
+        },
+      }
+    );
   }
 }

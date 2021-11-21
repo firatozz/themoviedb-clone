@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MoviesApiService } from '../../services/movies.api.service';
 
 @Component({
   selector: 'app-movie-search',
@@ -6,7 +7,23 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieSearchComponent implements OnInit {
-  constructor() {}
+  userMovieList: any[] = [];
 
-  ngOnInit(): void {}
+  constructor(private movieService: MoviesApiService) {}
+
+  ngOnInit() {}
+
+  onSearchChange(event: any) {
+    this.getLastTreeMovies(event.target.value);
+  }
+
+  getLastTreeMovies(searchText: string) {
+    if (searchText.length) {
+      this.movieService.getSearchMovie(searchText).subscribe((res) => {
+        Object.assign(this.userMovieList, res.results);
+      });
+    } else {
+      this.userMovieList = [];
+    }
+  }
 }

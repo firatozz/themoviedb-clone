@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { ServicesModule } from './services/services.module';
 
 import * as _components from './index';
+import { MinutesToHours } from './utilities/m2h.pipe';
 
 const COMPONENTS = [
   _components.MovieListComponent,
@@ -17,8 +18,8 @@ const LAYOUTS = [
 ];
 
 @NgModule({
-  declarations: [...COMPONENTS, ...LAYOUTS],
+  declarations: [...COMPONENTS, ...LAYOUTS, MinutesToHours],
   imports: [CommonModule, RouterModule, ServicesModule],
-  exports: [...COMPONENTS, ...LAYOUTS],
+  exports: [...COMPONENTS, ...LAYOUTS, MinutesToHours],
 })
 export class SharedModule {}

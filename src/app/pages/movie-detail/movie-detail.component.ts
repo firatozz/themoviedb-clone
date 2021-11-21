@@ -13,6 +13,7 @@ export class MovieDetailComponent implements OnInit {
   imagePath = 'https://www.themoviedb.org/t/p/w220_and_h330_face/';
   backDropImgPath =
     'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/';
+
   movieInfo: MovieDetail;
 
   constructor(

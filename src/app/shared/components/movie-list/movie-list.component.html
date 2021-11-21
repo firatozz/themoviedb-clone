@@ -10,11 +10,11 @@
       </ul>
     </div>
     <div class="movie-cards">
-      <div *ngFor="let movie of movies.results; let i = index" class="movie-card">
+      <div *ngFor="let movie of movies.results" class="movie-card">
         <a [routerLink]="['/movie-detail', movie.id]">
           <img [src]="imagePath + movie.poster_path" alt="">
-          <h2>{{movie.title}}</h2>
-          <p>{{movie.release_date | date:'MMM dd, y'}}</p>
+          <h2>{{movie?.title}}</h2>
+          <p>{{movie?.release_date | date:'MMM dd, y'}}</p>
         </a>
       </div>
     </div>

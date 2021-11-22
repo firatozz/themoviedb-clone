@@ -1,6 +1,10 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ChangeDetectionStrategy,
+  Input,
+} from '@angular/core';
 import { MoviesApiService } from './../../services/movies.api.service';
-import { MovieList } from './../../models/MovieList';
 import { MovieListResponse } from '../../models/MovieListResponse';
 
 @Component({
@@ -9,13 +13,22 @@ import { MovieListResponse } from '../../models/MovieListResponse';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MovieListComponent implements OnInit {
+  @Input()
+  listName = '';
+
+  @Input()
+  movieFilterTabs: any;
+
   movies: MovieListResponse;
+
+  selectedItem: String;
 
   imagePath = 'https://www.themoviedb.org/t/p/w220_and_h330_face/';
 
   constructor(private movieService: MoviesApiService) {}
 
   ngOnInit() {
+    this.selectedItem = this.movieFilterTabs[0];
     this.getPopularMovies();
   }
 
@@ -24,5 +37,10 @@ export class MovieListComponent implements OnInit {
       console.log();
       this.movies = res;
     });
+  }
+
+  listClick(newValue: any) {
+    console.log(newValue);
+    this.selectedItem = newValue;
   }
 }

@@ -1,14 +1,17 @@
 <form action="" class="movieSearch">
   <label for="movieName">
-    <input type="text" name="movieName" id="movieName" placeholder="Film seç." (keyup)="onSearchChange($event)"
-      autocomplete="off">
-    <datalist id="dynmicMovies" style="display: block;">
-      <ng-container *ngFor="let item of userMovieList;let i = index">
-        <option *ngIf="i<3" [value]="item.title">{{item.title}}</option>
-      </ng-container>
+    <div class="searchListContainer">
+      <input type="text" name="movieName" id="movieName" placeholder="Film seç." (keyup)="onSearchChange($event)"
+        autocomplete="off">
+      <datalist id="dynmicMovies" class="searchDataList">
+        <ng-container *ngFor="let item of userMovieList;let i = index">
+          <option *ngIf="i<3" [value]="item.title">{{item.title}}</option>
+        </ng-container>
 
-    </datalist>
+      </datalist>
+    </div>
   </label>
+
   <button class="submitBtn" type="submit" value="Search">Search</button>
 
 </form>

@@ -4,16 +4,16 @@
     <div class="grid-medium flex-middle">
       <!-- Movie Image-->
       <div class="width-1-4">
-        <img [src]="imagePath + movieInfo.poster_path" style="width: 300px;border-radius: 10px;">
+        <img class="movie-poster" [src]="imagePath + movieInfo.poster_path">
       </div>
       <!-- Movie Info-->
       <div class="width-3-4">
         <!-- Movie Name-->
         <div class="flex">
           <div>
-            <a href="" class="movie-name">{{movieInfo?.title}}</a>
+            <a href="" class="movie-name">{{movieInfo?.title || movieInfo?.name}}</a>
           </div>
-          <div class="movie-year">({{movieInfo?.release_date | date:'yyyy'}})</div>
+          <div class="movie-year">({{movieInfo?.release_date || movieInfo?.first_air_date | date:'yyyy'}})</div>
         </div>
         <!-- Movie Categories and Duration-->
         <div class="flex">
@@ -24,7 +24,7 @@
             </div>
             <div></div>
           </div>
-          <div class="movie-duration">{{movieInfo?.runtime | m2h}}</div>
+          <div *ngIf="movieInfo?.runtime" class="movie-duration">{{movieInfo?.runtime | m2h}}</div>
         </div>
         <!-- Buttons-->
         <div>
@@ -45,7 +45,7 @@
         </div>
         <p class="movie-quote">{{movieInfo?.tagline}}</p>
         <div class="overview">Overview</div>
-        <p>{{movieInfo?.overview}}</p>
+        <p>{{movieInfo?.overview }}</p>
       </div>
     </div>
   </div>

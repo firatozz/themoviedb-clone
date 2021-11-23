@@ -3,9 +3,10 @@ import {
   OnInit,
   ChangeDetectionStrategy,
   Input,
+  Output,
+  EventEmitter,
 } from '@angular/core';
-import { MoviesApiService } from './../../services/movies.api.service';
-import { MovieListResponse } from '../../models/MovieListResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-movie-list',
@@ -19,28 +20,24 @@ export class MovieListComponent implements OnInit {
   @Input()
   movieFilterTabs: any;
 
-  movies: MovieListResponse;
+  @Input()
+  movies: any;
+
+  @Output()
+  activeTab: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   selectedItem: String;
 
   imagePath = 'https://www.themoviedb.org/t/p/w220_and_h330_face/';
 
-  constructor(private movieService: MoviesApiService) {}
+  constructor() {}
 
   ngOnInit() {
     this.selectedItem = this.movieFilterTabs[0];
-    this.getPopularMovies();
   }
 
-  getPopularMovies() {
-    this.movieService.getPopularMovieList(1).subscribe((res) => {
-      console.log();
-      this.movies = res;
-    });
-  }
-
-  listClick(newValue: any) {
-    console.log(newValue);
+  listClick(newValue: string) {
+    newValue === 'TV' ? this.activeTab.emit(false) : this.activeTab.emit(true);
     this.selectedItem = newValue;
   }
 }

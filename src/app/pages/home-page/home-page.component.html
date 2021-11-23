@@ -10,5 +10,11 @@
   </div>
 </section>
 <section>
-  <app-movie-list></app-movie-list>
+  <app-movie-list [listName]="popularMoviesHeader" [movieFilterTabs]="popularMoviesFilterTabs" [movies]="movies">
+  </app-movie-list>
+</section>
+<section>
+  <app-movie-list [listName]="freeToWatchHeader" [movieFilterTabs]="freeToWatchFilterTabs"
+    [movies]="freeToWatch ? freeToWatchMovies : freeToWatchTV" (activeTab)="changeList($event)">
+  </app-movie-list>
 </section>

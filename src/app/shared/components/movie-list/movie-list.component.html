@@ -1,22 +1,22 @@
 <div class="container">
   <div class="movie-section">
     <div class="flex flex-middle">
-      <h3>What's Popular</h3>
+      <h3>{{ listName }}</h3>
       <ul class="tabs">
-        <li class="tab-active"><a href="">Streaming</a></li>
-        <li><a href="">On TV</a></li>
-        <li><a href="">For Rent</a></li>
-        <li><a href="">In Theatres</a></li>
+        <li *ngFor="let item of movieFilterTabs" [ngClass]="{'tab-active': selectedItem == item}"
+          (click)="listClick(item)"><a>{{item}}</a></li>
       </ul>
     </div>
     <div class="movie-cards">
-      <div *ngFor="let movie of movies.results" class="movie-card">
-        <a [routerLink]="['/movie-detail', movie.id]">
-          <img [src]="imagePath + movie.poster_path" alt="">
-          <h2>{{movie?.title}}</h2>
-          <p>{{movie?.release_date | date:'MMM dd, y'}}</p>
-        </a>
-      </div>
+      <ng-container>
+        <div *ngFor="let movie of movies.results" class="movie-card">
+          <a [routerLink]="['/movie-detail', movie.id ]" [queryParams]="{ page: selectedItem }">
+            <img [src]="imagePath + movie.poster_path" alt="">
+            <h2>{{movie?.title || movie?.name}}</h2>
+            <p>{{movie?.release_date || movie?.first_air_date | date:'MMM dd, y'}}</p>
+          </a>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

@@ -1,6 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieDetail } from 'src/app/shared/models/MovieDetail';
 import { MoviesApiService } from 'src/app/shared/services/movies.api.service';
 
 @Component({
@@ -14,7 +13,8 @@ export class MovieDetailComponent implements OnInit {
   backDropImgPath =
     'https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces/';
 
-  movieInfo: MovieDetail;
+  movieInfo: any;
+  page: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -23,13 +23,21 @@ export class MovieDetailComponent implements OnInit {
 
   ngOnInit() {
     this.movieId = this.activatedRoute.snapshot.params['id'];
-    this.getMovieDetail(this.movieId);
+    this.page = this.activatedRoute.snapshot.queryParams['page'];
+    this.page === 'TV'
+      ? this.getTVDetail(this.movieId)
+      : this.getMovieDetail(this.movieId);
   }
 
   getMovieDetail(movieId: string) {
     this.movieService.getMovieDetail(movieId).subscribe((res) => {
       this.movieInfo = res;
-      console.log(res);
+    });
+  }
+
+  getTVDetail(tvId: string) {
+    this.movieService.getTVDetail(tvId).subscribe((res) => {
+      this.movieInfo = res;
     });
   }
 }
